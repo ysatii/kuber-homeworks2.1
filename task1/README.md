@@ -31,6 +31,11 @@ kubectl get pv
 kubectl -n storage-demo get pvc
 kubectl -n storage-demo describe pvc pvc-shared
 kubectl describe pv pv-shared-hostpath
+
+
+![Рисунок 1](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_1.jpg)
+![Рисунок 2](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_1.jpg)
+
 -------------------------------
 создаем поды
 kubectl -n storage-demo apply -f writer.yaml
