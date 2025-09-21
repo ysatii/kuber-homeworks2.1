@@ -4,13 +4,15 @@ metadata:
   name: reader-multitool
   namespace: storage-demo
 spec:
+  nodeSelector:
+    kubernetes.io/hostname: minikube
   containers:
     - name: multitool
       image: wbitt/network-multitool:latest
       command: ["/bin/sh", "-c"]
       args:
         - |
-          echo "Multitool started. Press Ctrl+C to exit";
+          echo "multitool is ready"; 
           sleep infinity
       volumeMounts:
         - name: shared
@@ -18,5 +20,6 @@ spec:
           readOnly: true
   volumes:
     - name: shared
-      persistentVolumeClaim:
-        claimName: pvc-shared
+      hostPath:
+        path: /data/k8s-shared-demo
+        type: DirectoryOrCreate

@@ -20,38 +20,26 @@
 ------
 ## Решение 1 
 
-# Namespace
+### Создаем Namespace
 kubectl apply -f ns.yaml
+----------------------------------------
 
-kubectl apply -f pv.yaml
-kubectl apply -f pvc.yaml
-kubectl -n storage-demo get pv,pvc
-
-kubectl get pv
-kubectl -n storage-demo get pvc
-kubectl -n storage-demo describe pvc pvc-shared
-kubectl describe pv pv-shared-hostpath
-
-
-![Рисунок 1](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_1.jpg)
-![Рисунок 2](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_1.jpg)
-
--------------------------------
-создаем поды
+### Подымаем поды
 kubectl -n storage-demo apply -f writer.yaml
-kubectl -n storage-demo apply -f reader-nginx.yaml
 kubectl -n storage-demo apply -f reader-multitool.yaml
+----------------------------------------
+
+### Проверям что поды подняль 
+kubectl -n storage-demo get pods -o wide
+----------------------------------------
 
 
-Проверяем, что writer пишет:
+Проверка чтения файла
+### логи писателя
 kubectl -n storage-demo logs writer --tail=5
 
-Чтение файла через multitool:
+### хвост файла из multitool (тот же hostPath)
+kubectl -n storage-demo exec -it reader-multitool -- tail -n 10 /data/out.txt
+exit
 
-MULTI=$(kubectl -n storage-demo get pod reader-multitool -o jsonpath='{.metadata.name}')
-kubectl -n storage-demo exec -it $MULTI -- tail -n 5 /data/out.txt
-
-Чтение файла через nginx:
-
-kubectl -n storage-demo port-forward pod/reader-nginx 8080:80
-# открыть http://localhost:8080/out.txt
+![]()
