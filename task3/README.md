@@ -38,25 +38,25 @@ kubectl -n storage-demo get pvc
 kubectl -n storage-demo apply -f deployment-sc.yaml
 kubectl -n storage-demo get pods -l app=data-exchange-sc -o wide
 
-Поды в работе !
-![рисунок 14](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_14.jpg) 
+Поды в работе !  
+![рисунок 14](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_14.jpg)  
 
-4) Показать, что multitool читает, а busybox пишет
+### смотрим логи что пишут и читают поды
 kubectl -n storage-demo logs deploy/data-exchange-sc -c writer --tail=10
 kubectl -n storage-demo logs deploy/data-exchange-sc -c reader --tail=10
 
-
+### смотрим как происходит запись в PVC
 POD=$(kubectl -n storage-demo get pods -l app=data-exchange-sc -o jsonpath='{.items[0].metadata.name}')
-kubectl -n storage-demo exec -it "$POD" -c reader -- tail -n 20 /data/out.txt
-
+kubectl -n storage-demo exec -it "$POD" -c reader -- tail -n 20 /data/out.txt  
+![рисунок 15](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_15.jpg)  
 
 5) Показать автопровиженинг PV
 kubectl get pv
 kubectl -n storage-demo get pvc pvc-sc-demo -o wide
 kubectl -n storage-demo describe pvc pvc-sc-demo | sed -n '/Events/,$p'
 
-
-Скрин: видно, что PVC стал Bound, появился новый PV, Events пусты/успешны.
+![рисунок 16](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_16.jpg)  
+ 
 ---------------------------------------------------------
 удаляем все что было создано 
 
