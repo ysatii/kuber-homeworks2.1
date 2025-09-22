@@ -128,6 +128,6 @@ exit
 ![рисунок 10](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_10.jpg)
 ![рисунок 11](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_11.jpg)
 ![рисунок 12](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_12.jpg)
-![рисунок 13](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_13.jpg)
+![рисунок 13](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_13.jpg) 
 
 
