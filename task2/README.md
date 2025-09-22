@@ -53,21 +53,26 @@ kubectl -n storage-demo get pods -l app=data-exchange -o wide
 
 ---
 
-## 4. Проверка работы
-Логи writer:
-kubectl -n storage-demo logs deploy/data-exchange -c writer --tail=10
+### Проверка работы
+Логи writer:  
+kubectl -n storage-demo logs deploy/data-exchange -c writer --tail=10  
 
-
-Логи reader:
-kubectl -n storage-demo logs deploy/data-exchange -c reader --tail=10
+Логи reader:  
+kubectl -n storage-demo logs deploy/data-exchange -c reader --tail=10  
  
-kubectl -n storage-demo exec -it deploy/data-exchange -c reader -- tail -n 20 /data/out.txt
-
-Подробное описание пода:
-kubectl -n storage-demo describe pod -l app=data-exchange
+kubectl -n storage-demo exec -it deploy/data-exchange -c reader -- tail -n 20 /data/out.txt 
+![рисунок 7](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_7.jpg)  
+![рисунок 8](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_8.jpg)  
 ---
 
-## 5. Удаляем Deployment и PVC
+### подробное описание пода:
+kubectl -n storage-demo describe pod -l app=data-exchange
+![рисунок 9](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_9.jpg)
+![рисунок 10](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_10.jpg)
+![рисунок 11](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_11.jpg)
+---
+
+### Удаляем Deployment и PVC
 kubectl -n storage-demo delete deploy data-exchange
 kubectl -n storage-demo delete pvc pvc-local-demo
 
@@ -122,12 +127,12 @@ sudo rm -rf /data/pv-local-demo
 exit
 
 
-![рисунок 7](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_7.jpg)
-![рисунок 8](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_8.jpg)
-![рисунок 9](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_9.jpg)
-![рисунок 10](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_10.jpg)
-![рисунок 11](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_11.jpg)
+
+
 ![рисунок 12](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_12.jpg)
 ![рисунок 13](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_13.jpg) 
 
+
+
+https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img7.jpg
 
