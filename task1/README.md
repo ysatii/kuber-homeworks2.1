@@ -30,23 +30,30 @@ kubectl -n storage-demo apply -f pod.yaml
 
 ### Проверям что поды поднялись
 kubectl -n storage-demo get pods -o wide
+![рисунок 1](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_1.jpg)
+![рисунок 2](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_2.jpg)
+![рисунок 3](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_3.jpg)
+![рисунок 4](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_4.jpg)
 
-
-
-Проверка чтения файла
-### логи писателя
-kubectl -n storage-demo logs data-exchange --tail=5
 
  
 
 ### Показать всё про под
 kubectl -n storage-demo describe pod data-exchange
 
+
+Проверка чтения файла
+### логи писателя
+kubectl -n storage-demo logs data-exchange --tail=5
+
+
 Логи контейнера writer (пишет каждые 5 сек)
 ### kubectl -n storage-demo logs data-exchange -c writer --tail=20 -f
 
 ### читаем из контейнера reader (он делает tail -f файла)
 kubectl -n storage-demo logs data-exchange -c reader --tail=20 -f
+
+![рисунок 5](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_5.jpg)
 
 ### Зайти внутрь контейнера reader и посмотреть файл
 kubectl -n storage-demo exec -it data-exchange -c reader -- sh
@@ -60,10 +67,4 @@ kubectl -n storage-demo exec -it data-exchange -c reader -- tail -n 20 /data/out
 ### показать имена контейнеров в поде
 kubectl -n storage-demo get pod data-exchange -o jsonpath='{.spec.containers[*].name}{"\n"}'
 Получим два контейнера: writer reader
-
-![рисунок 1](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_1.jpg)
-![рисунок 2](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_2.jpg)
-![рисунок 3](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_3.jpg)
-![рисунок 4](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_4.jpg)
-![рисунок 5](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_5.jpg)
 ![рисунок 6](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_6.jpg)
