@@ -86,6 +86,13 @@
 
 ------
 
+## Решение 2
+ [ссылка на решение 2](https://github.com/ysatii/kuber-homeworks2.1/blob/main/task2/README.md)  
+в решениии приведены необходимы стриншоты и манифесты
+
+
+------
+
 ## Задание 3. StorageClass
 ### Задача
 Создать Deployment приложения, использующего PVC, созданный на основе StorageClass.

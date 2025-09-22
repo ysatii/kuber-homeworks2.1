@@ -58,15 +58,17 @@ kubectl -n storage-demo get pods -l app=data-exchange -o wide
 kubectl -n storage-demo logs deploy/data-exchange -c writer --tail=10  
 
 Логи reader:  
-kubectl -n storage-demo logs deploy/data-exchange -c reader --tail=10  
+kubectl -n storage-demo logs deploy/data-exchange -c reader --tail=10   
  
-kubectl -n storage-demo exec -it deploy/data-exchange -c reader -- tail -n 20 /data/out.txt 
+kubectl -n storage-demo exec -it deploy/data-exchange -c reader -- tail -n 20 /data/out.txt  
+  
 ![рисунок 7](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_7.jpg)  
 ![рисунок 8](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_8.jpg)  
 ---
 
 ### подробное описание пода:
 kubectl -n storage-demo describe pod -l app=data-exchange
+  
 ![рисунок 9](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_9.jpg)
 ![рисунок 10](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_10.jpg)
 ![рисунок 11](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_11.jpg)
@@ -108,6 +110,8 @@ minikube ssh
 ls -l /data/pv-local-demo
 tail -n 10 /data/pv-local-demo/out.txt
 exit
+![рисунок 12](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_12.jpg)
+![рисунок 13](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_13.jpg) 
 
 Файл остался, потому что Kubernetes удаляет только объект PV, но не данные (`Retain`).
 
@@ -129,10 +133,9 @@ exit
 
 
 
-![рисунок 12](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_12.jpg)
-![рисунок 13](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_13.jpg) 
 
 
 
-https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img7.jpg
+
+ 
 
