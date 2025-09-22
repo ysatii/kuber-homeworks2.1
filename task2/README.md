@@ -125,10 +125,10 @@ exit
 
 
 ### удалим все что было создано, за счет удаления пространства имен **storage-demo**
-kubectl delete ns storage-demo
-minikube ssh
-sudo rm -rf /data/pv-local-demo
-exit
+kubectl delete ns storage-demo  
+minikube ssh  
+sudo rm -rf /data/pv-local-demo  
+exit  
 
 
 
