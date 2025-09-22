@@ -56,13 +56,13 @@ kubectl -n storage-demo logs data-exchange -c reader --tail=20 -f
 ![рисунок 5](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_5.jpg)
 
 ### Зайти внутрь контейнера reader и посмотреть файл
-kubectl -n storage-demo exec -it data-exchange -c reader -- sh
-уже внутри контейнера:
-tail -n 20 /data/out.txt
-exit
-либо 
-Однострочник без входа внутрь
-kubectl -n storage-demo exec -it data-exchange -c reader -- tail -n 20 /data/out.txt
+kubectl -n storage-demo exec -it data-exchange -c reader -- sh  
+уже внутри контейнера:  
+tail -n 20 /data/out.txt  
+exit  
+либо   
+Однострочник без входа внутрь  
+kubectl -n storage-demo exec -it data-exchange -c reader -- tail -n 20 /data/out.txt  
 
 ### показать имена контейнеров в поде
 kubectl -n storage-demo get pod data-exchange -o jsonpath='{.spec.containers[*].name}{"\n"}'
