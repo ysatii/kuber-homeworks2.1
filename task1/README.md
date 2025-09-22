@@ -20,6 +20,9 @@
 ------
 ## Решение 1 
 
+
+
+
 ### Создаем Namespace
 kubectl apply -f ns.yaml
 
@@ -68,3 +71,8 @@ kubectl -n storage-demo exec -it data-exchange -c reader -- tail -n 20 /data/out
 kubectl -n storage-demo get pod data-exchange -o jsonpath='{.spec.containers[*].name}{"\n"}'  
 Получим два контейнера: writer reader  
 ![рисунок 6](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_6.jpg)  
+
+
+ссылки на файлы решения  
+https://github.com/ysatii/kuber-homeworks2.1/blob/main/task1/ns.yaml  
+https://github.com/ysatii/kuber-homeworks2.1/blob/main/task1/pod.yaml  
