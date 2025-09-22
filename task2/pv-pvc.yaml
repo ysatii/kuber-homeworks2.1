@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-local-demo
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /data/pv-local-demo
+    type: DirectoryOrCreate
+---
+# pvc-only.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-local-demo
+  namespace: storage-demo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: ""        # ВАЖНО: отключает дефолтный класс "standard"
+  volumeName: pv-local-demo   # Жёстко привязываем к нашему PV
+

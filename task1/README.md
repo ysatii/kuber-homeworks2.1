@@ -72,6 +72,8 @@ kubectl -n storage-demo get pod data-exchange -o jsonpath='{.spec.containers[*].
 Получим два контейнера: writer reader  
 ![рисунок 6](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_6.jpg)  
 
+### удалим все что было создано, за счет удаления пространства имен **storage-demo**
+kubectl delete ns storage-demo
 
 ссылки на файлы решения  
 https://github.com/ysatii/kuber-homeworks2.1/blob/main/task1/ns.yaml  
