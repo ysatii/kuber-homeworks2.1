@@ -22,68 +22,66 @@ minikube addons enable default-storageclass
 
 
 ### Создать ns (если ещё нет)
-kubectl apply -f ns.yaml
+kubectl apply -f ns.yaml  
 
-### Создать StorageClass и PVC
-kubectl apply -f sc.yaml
-kubectl -n storage-demo apply -f pvc-sc.yaml
+### Создать StorageClass и PVC  
+kubectl apply -f sc.yaml  
+kubectl -n storage-demo apply -f pvc-sc.yaml  
 
 
 
-### проверяем что создано
-kubectl get sc
-kubectl -n storage-demo get pvc
+### проверяем что создано  
+kubectl get sc  
+kubectl -n storage-demo get pvc  
 
 ### Deployment
-kubectl -n storage-demo apply -f deployment-sc.yaml
-kubectl -n storage-demo get pods -l app=data-exchange-sc -o wide
+kubectl -n storage-demo apply -f deployment-sc.yaml  
+kubectl -n storage-demo get pods -l app=data-exchange-sc -o wide  
 
 Поды в работе !  
 ![рисунок 14](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_14.jpg)  
 
-### смотрим логи что пишут и читают поды
-kubectl -n storage-demo logs deploy/data-exchange-sc -c writer --tail=10
-kubectl -n storage-demo logs deploy/data-exchange-sc -c reader --tail=10
+### смотрим логи что пишут и читают поды  
+kubectl -n storage-demo logs deploy/data-exchange-sc -c writer --tail=10  
+kubectl -n storage-demo logs deploy/data-exchange-sc -c reader --tail=10  
 
-### смотрим как происходит запись в PVC
-POD=$(kubectl -n storage-demo get pods -l app=data-exchange-sc -o jsonpath='{.items[0].metadata.name}')
-kubectl -n storage-demo exec -it "$POD" -c reader -- tail -n 20 /data/out.txt  
-![рисунок 15](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_15.jpg)  
+### смотрим как происходит запись в PVC  
+POD=$(kubectl -n storage-demo get pods -l app=data-exchange-sc -o jsonpath='{.items[0].metadata.name}') 
+kubectl -n storage-demo exec -it "$POD" -c reader -- tail -n 20 /data/out.txt    
+![рисунок 15](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_15.jpg)    
 
-5) Показать автопровиженинг PV
-kubectl get pv
-kubectl -n storage-demo get pvc pvc-sc-demo -o wide
-kubectl -n storage-demo describe pvc pvc-sc-demo | sed -n '/Events/,$p'
+### автопровиженинг PV  
+kubectl get pv  
+kubectl -n storage-demo get pvc pvc-sc-demo -o wide  
+kubectl -n storage-demo describe pvc pvc-sc-demo | sed -n '/Events/,$p'  
 
 ![рисунок 16](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_16.jpg)  
  
 ---------------------------------------------------------
-удаляем все что было создано 
+## удаляем все что было создано 
 
-1. Удалить Deployment (приложение)
+### Удалить Deployment (приложение)
 kubectl -n storage-demo delete deploy data-exchange-sc --ignore-not-found
 
-2. Удалить PVC
+### Удалить PVC
 kubectl -n storage-demo delete pvc pvc-sc-demo --ignore-not-found
 
-3. Удалить PV, созданный динамически
-
-PVC создавал PV автоматически через StorageClass. Найди его и удали:
+### Удалить PV, созданный динамически
+PVC создавал PV автоматически через StorageClass. Найдем его и удалим:
 
 kubectl get pv
 kubectl delete pv <имя_PV>
 
-4. Удалить StorageClass (если создавал свой)
+No resources found - удалять нечево
+
+### Удалиv StorageClass  
 kubectl delete sc local-hostpath-sc --ignore-not-found
 
-5. Проверка, что всё удалено
+### Проверка, что всё удалено
 kubectl -n storage-demo get all
 kubectl get pvc -A
 kubectl get pv
 kubectl get sc
-
-
-👉 После этого у тебя останется только namespace storage-demo.
-Если хочешь подчистить всё окончательно:
-
 kubectl delete ns storage-demo
+
+![рисунок 17](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_17.jpg)  
