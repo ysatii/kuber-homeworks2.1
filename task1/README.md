@@ -22,46 +22,48 @@
 
 ### Создаем Namespace
 kubectl apply -f ns.yaml
-----------------------------------------
+
 
 ### Подымаем поды
 kubectl -n storage-demo apply -f pod.yaml
-----------------------------------------
 
-### Проверям что поды подняль 
+
+### Проверям что поды поднялись
 kubectl -n storage-demo get pods -o wide
-----------------------------------------
+
 
 
 Проверка чтения файла
 ### логи писателя
 kubectl -n storage-demo logs data-exchange --tail=5
 
-### хвост файла из multitool (тот же hostPath)
-kubectl -n storage-demo exec -it reader -- tail -n 10 /data/out.txt
-exit
+ 
 
-### 
-kubectl -n storage-demo describe pod data-exchange
-
-Показать всё про под
+### Показать всё про под
 kubectl -n storage-demo describe pod data-exchange
 
 Логи контейнера writer (пишет каждые 5 сек)
-kubectl -n storage-demo logs data-exchange -c writer --tail=20 -f
+### kubectl -n storage-demo logs data-exchange -c writer --tail=20 -f
 
-Логи контейнера reader (он делает tail -f файла)
+### читаем из контейнера reader (он делает tail -f файла)
 kubectl -n storage-demo logs data-exchange -c reader --tail=20 -f
 
-Зайти внутрь контейнера reader и посмотреть файл
+### Зайти внутрь контейнера reader и посмотреть файл
 kubectl -n storage-demo exec -it data-exchange -c reader -- sh
-# уже внутри контейнера:
+уже внутри контейнера:
 tail -n 20 /data/out.txt
 exit
-
+либо 
 Однострочник без входа внутрь
 kubectl -n storage-demo exec -it data-exchange -c reader -- tail -n 20 /data/out.txt
 
-(На всякий) показать имена контейнеров в поде
+### показать имена контейнеров в поде
 kubectl -n storage-demo get pod data-exchange -o jsonpath='{.spec.containers[*].name}{"\n"}'
-# ожидаешь: writer reader
+Получим два контейнера: writer reader
+
+![рисунок 1](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_1.jpg)
+![рисунок 2](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_2.jpg)
+![рисунок 3](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_3.jpg)
+![рисунок 4](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_4.jpg)
+![рисунок 5](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_5.jpg)
+![рисунок 6](https://github.com/ysatii/kuber-homeworks2.1/blob/main/img/img_6.jpg)
